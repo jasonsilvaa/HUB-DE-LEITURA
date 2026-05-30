@@ -1,0 +1,74 @@
+[
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "genre": "Ficção",
+    "description": "1984 é um romance distópico que descreve um regime totalitário liderado pelo Grande Irmão. A história acompanha Winston Smith em sua luta contra a opressão e o controle do pensamento, levantando questões sobre liberdade e vigilância."
+  },
+  {
+    "title": "A Arte da Guerra",
+    "author": "Sun Tzu",
+    "genre": "Estratégia",
+    "description": "A Arte da Guerra é um tratado militar chinês com ensinamentos sobre táticas, estratégias e inteligência. Seus princípios são aplicados não apenas em guerras, mas também em negócios, política e vida pessoal."
+  },
+  {
+    "title": "A Divina Comédia",
+    "author": "Dante Alighieri",
+    "genre": "Poesia",
+    "description": "Dante viaja por Inferno, Purgatório e Paraíso, guiado por Virgílio e Beatriz, em uma das mais grandiosas obras da literatura mundial, repleta de alegorias e simbolismos."
+  },
+  {
+    "title": "A Menina que Roubava Livros",
+    "author": "Markus Zusak",
+    "genre": "Ficção",
+    "description": "Durante a Segunda Guerra Mundial, Liesel encontra refúgio nos livros, enquanto a Morte narra sua história. Uma comovente homenagem ao poder das palavras e da literatura."
+  },
+  {
+    "title": "A Metamorfose",
+    "author": "Franz Kafka",
+    "genre": "Ficção",
+    "description": "Gregor Samsa acorda transformado em um inseto gigante, e a história aborda temas como alienação, rejeição e identidade em uma narrativa surreal e simbólica."
+  },
+  {
+    "title": "A Revolução dos Bichos",
+    "author": "George Orwell",
+    "genre": "Ficção",
+    "description": "Uma alegoria sobre o poder e a corrupção, A Revolução dos Bichos mostra como os ideais de uma revolução podem ser distorcidos. Os animais de uma fazenda tomam o controle, apenas para descobrir que a tirania pode mudar de forma."
+  },
+  {
+    "title": "Cem Anos de Solidão",
+    "author": "Gabriel García Márquez",
+    "genre": "Realismo Mágico",
+    "description": "A saga da família Buendía em Macondo é uma narrativa envolvente que mistura realidade e fantasia. Obra-prima do realismo mágico e um marco da literatura latino-americana."
+  },
+  {
+    "title": "Dom Casmurro",
+    "author": "Machado de Assis",
+    "genre": "Ficção Clássica",
+    "description": "Dom Casmurro é um dos mais importantes romances da literatura brasileira, narrado em primeira pessoa por Bentinho, que busca justificar seu ciúme e a suposta traição de Capitu. A obra explora temas como memória, dúvida e manipulação."
+  },
+  {
+    "title": "Dom Quixote",
+    "author": "Miguel de Cervantes",
+    "genre": "Romance",
+    "description": "Dom Quixote e Sancho Pança vivem aventuras hilárias e filosóficas na busca por justiça e cavalheirismo. Um marco da literatura ocidental, repleto de crítica social."
+  },
+  {
+    "title": "Harry Potter e a Pedra Filosofal",
+    "author": "J.K. Rowling",
+    "genre": "Fantasia",
+    "description": "O primeiro livro da saga Harry Potter apresenta o jovem bruxo que descobre seu passado mágico e embarca em aventuras na Escola de Magia de Hogwarts. Um clássico moderno da literatura infantojuvenil."
+  },
+  {
+    "title": "Hub de Leitura",
+    "author": "Autor Exemplo",
+    "genre": "Geral",
+    "description": "Livro de exemplo para demonstração do sistema Hub de Leitura. Contém informações básicas para testes e validação da aplicação."
+  },
+  {
+    "title": "O Alquimista",
+    "author": "Paulo Coelho",
+    "genre": "Ficção",
+    "description": "O Alquimista narra a jornada de Santiago em busca de sua lenda pessoal, abordando temas como destino, autoconhecimento e os sinais do universo."
+  }
+]

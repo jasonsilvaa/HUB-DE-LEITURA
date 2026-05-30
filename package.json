@@ -1,0 +1,23 @@
+{
+  "name": "hub-de-leitura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
+    "cypress": "^15.16.0",
+    "eslint": "^10.4.1",
+    "eslint-plugin-cypress": "^6.4.1"
+  }
+}
