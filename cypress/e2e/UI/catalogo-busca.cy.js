@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import livros from '../fixtures/livros.json'
+import livros from '../../fixtures/livros.json'
 describe('Funcionalidade: Catalogo', () => {
   beforeEach(() => {
     cy.visit('/catalog.html')

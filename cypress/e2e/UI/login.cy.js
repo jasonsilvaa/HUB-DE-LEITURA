@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
-import user from '../fixtures/usuario.json'
-import loginPage from '../support/pages/login-pages';
+import user from '../../fixtures/usuario.json'
+import loginPage from '../../support/pages/login-pages';
 import { faker } from '@faker-js/faker';
 describe('Funcionalidade: Login', () => {
   beforeEach(() => {

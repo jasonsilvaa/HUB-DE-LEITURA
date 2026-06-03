@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
-import cadastroPage from '../support/pages/cadastro-page';
-import loginPage from '../support/pages/login-pages';
+import cadastroPage from '../../support/pages/cadastro-page';
+import loginPage from '../../support/pages/login-pages';
 
 describe('E2E - Cadastro e Login no Hub de Leitura', () => {
   it('Deve cadastrar um usuário válido e em seguida fazer login com ele', () => {

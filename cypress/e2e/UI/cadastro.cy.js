@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
-import cadastroPage from '../support/pages/cadastro-page';
+import cadastroPage from '../../support/pages/cadastro-page';
 describe('Funcionalidade: Cadastro',()=>{
     beforeEach(()=>{
         cy.visit('/register.html')
