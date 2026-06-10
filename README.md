@@ -2,7 +2,7 @@
 
 Suíte de testes automatizados para a aplicação **Hub de Leitura**, cobrindo fluxos de **UI** (cadastro, login, catálogo, contato) e **API** (CRUD de usuários).
 
-> **Nota:** Este repositório contém apenas os testes. A aplicação deve estar em execução em `http://localhost:3000` antes de rodar os testes.
+> **Nota:** Este repositório contém apenas os testes. A aplicação ([hub-de-leitura-integrado](https://github.com/jasonsilvaa/hub-de-leitura-integrado)) deve estar em execução em `http://localhost:3000` antes de rodar os testes localmente. No Jenkins, a aplicação é clonada e iniciada automaticamente pelo pipeline.
 
 ## Funcionalidades testadas
 
@@ -27,9 +27,21 @@ Suíte de testes automatizados para a aplicação **Hub de Leitura**, cobrindo f
 
 - [Node.js](https://nodejs.org/) (v18 ou superior recomendado)
 - [npm](https://www.npmjs.com/)
-- Aplicação **Hub de Leitura** rodando em `http://localhost:3000`
+- Aplicação **Hub de Leitura** rodando em `http://localhost:3000` ([hub-de-leitura-integrado](https://github.com/jasonsilvaa/hub-de-leitura-integrado))
 
 ## Instalação
+
+### 1. Subir a aplicação (em outro terminal)
+
+```bash
+git clone https://github.com/jasonsilvaa/hub-de-leitura-integrado.git
+cd hub-de-leitura-integrado
+npm install
+npm run db
+npm start
+```
+
+### 2. Instalar os testes
 
 ```bash
 git clone https://github.com/jasonsilvaa/HUB-DE-LEITURA.git
@@ -241,17 +253,19 @@ O projeto inclui um `Jenkinsfile` com pipeline declarativo para execução autom
 
 - [Jenkins](https://www.jenkins.io/) instalado localmente ou em servidor acessível
 - Plugin **Pipeline** habilitado
-- **Node.js** e **npm** disponíveis no agente (PATH)
-- Aplicação **Hub de Leitura** em execução (padrão: `http://localhost:3000`)
+- **Node.js** (v18+) e **npm** disponíveis no agente (PATH)
+- **Git** disponível no agente (para clonar a aplicação)
+
+A aplicação é obtida automaticamente do repositório [hub-de-leitura-integrado](https://github.com/jasonsilvaa/hub-de-leitura-integrado) — não é necessário subir o servidor manualmente antes do build.
 
 ### Estágios do pipeline
 
 | Estágio | Descrição |
 |---------|-----------|
 | Preparação do Ambiente | Exibe versões do Node/npm e variáveis do build |
-| Instalação das Dependências | `npm ci` + `cypress verify` |
+| Instalação das Dependências dos Testes | `npm ci` + `cypress verify` |
+| Subir Aplicação Hub de Leitura | Clona `hub-de-leitura-integrado`, `npm install`, `npm run db`, `npm start` |
 | Análise de Código (Lint) | `npm run lint` |
-| Verificar Disponibilidade da Aplicação | Checa `/api/health` ou `/api-docs` |
 | Execução dos Testes Automatizados | `npm run ci:test` (testes de API) |
 
 ### Configurar o job no Jenkins
@@ -263,16 +277,22 @@ O projeto inclui um `Jenkinsfile` com pipeline declarativo para execução autom
 5. **Script Path**: `Jenkinsfile`
 6. Salve e clique em **Build Now**
 
-### Parâmetro do pipeline
+### Parâmetros do pipeline
 
 | Parâmetro | Padrão | Descrição |
 |-----------|--------|-----------|
+| `APP_REPO_URL` | `https://github.com/jasonsilvaa/hub-de-leitura-integrado.git` | Repositório da aplicação |
 | `APP_BASE_URL` | `http://localhost:3000` | URL da aplicação sob teste |
 
 ### Execução local (simulando CI)
 
 ```bash
-# Com a aplicação rodando em localhost:3000
+# Terminal 1 — aplicação
+git clone https://github.com/jasonsilvaa/hub-de-leitura-integrado.git
+cd hub-de-leitura-integrado && npm install && npm run db && npm start
+
+# Terminal 2 — testes
+cd HUB-DE-LEITURA
 npm ci
 npm run lint
 npm run ci:test

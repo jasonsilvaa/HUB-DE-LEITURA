@@ -1,4 +1,7 @@
 node_modules
+hub-de-leitura-integrado
+app-server.log
+app-server.pid
 cypress/screenshots
 cypress/videos
 cypress/downloads
