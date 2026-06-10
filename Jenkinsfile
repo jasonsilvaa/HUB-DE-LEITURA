@@ -18,6 +18,7 @@ pipeline {
         CI = 'true'
         APP_DIR = 'hub-de-leitura-integrado'
         CYPRESS_baseUrl = "${params.APP_BASE_URL}/api/"
+        PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:${env.PATH}"
     }
 
     options {
@@ -36,8 +37,7 @@ pipeline {
                 echo "URL da aplicação: ${params.APP_BASE_URL}"
 
                 sh '''
-                    echo "Node: $(node --version)"
-                    echo "npm: $(npm --version)"
+                    . ./scripts/jenkins-setup.sh
                     echo "CYPRESS_baseUrl: $CYPRESS_baseUrl"
                 '''
             }
@@ -46,6 +46,8 @@ pipeline {
         stage('Instalação das Dependências dos Testes') {
             steps {
                 sh '''
+                    . ./scripts/jenkins-setup.sh
+
                     if [ -f package-lock.json ]; then
                         npm ci
                     else
@@ -59,6 +61,7 @@ pipeline {
         stage('Subir Aplicação Hub de Leitura') {
             steps {
                 sh '''
+                    . ./scripts/jenkins-setup.sh
                     set -e
 
                     if [ -d "$APP_DIR" ]; then
@@ -95,13 +98,19 @@ pipeline {
 
         stage('Análise de Código (Lint)') {
             steps {
-                sh 'npm run lint'
+                sh '''
+                    . ./scripts/jenkins-setup.sh
+                    npm run lint
+                '''
             }
         }
 
         stage('Execução dos Testes Automatizados') {
             steps {
-                sh 'npm run ci:test'
+                sh '''
+                    . ./scripts/jenkins-setup.sh
+                    npm run ci:test
+                '''
             }
         }
     }

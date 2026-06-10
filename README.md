@@ -114,6 +114,8 @@ HUB-DE-LEITURA/
 ├── cypress.config.js
 ├── eslint.config.js
 ├── Jenkinsfile                 # Pipeline de Integração Contínua
+├── scripts/
+│   └── jenkins-setup.sh        # Configura PATH do Node.js no Jenkins
 ├── package.json
 └── README.md
 ```
@@ -285,6 +287,17 @@ O repositório usa a branch **`main`**, não `master`. No job do Jenkins:
 1. **Configure** → seção **Pipeline** → **Branches to build**
 2. Altere de `*/master` para **`*/main`**
 3. Salve e execute **Build Now** novamente
+
+### Erro: `node: command not found` / `npm: command not found`
+
+O Jenkins roda com um PATH limitado e não encontra o Node.js automaticamente. O pipeline já inclui `scripts/jenkins-setup.sh` com os caminhos do Homebrew (`/opt/homebrew/bin`).
+
+Se o erro persistir:
+
+1. Instale o Node.js: https://nodejs.org/ (v18+)
+2. Ou instale o plugin **NodeJS** no Jenkins e configure uma instalação global
+3. Reinicie o Jenkins após instalar o Node.js
+4. Execute **Build Now** novamente
 
 ### Parâmetros do pipeline
 
