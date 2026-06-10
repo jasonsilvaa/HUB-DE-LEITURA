@@ -4,8 +4,8 @@ pipeline {
     parameters {
         string(
             name: 'APP_REPO_URL',
-            defaultValue: 'https://github.com/jasonsilvaa/hub-de-leitura-integrado.git',
-            description: 'Repositório da aplicação Hub de Leitura (backend + frontend)'
+            defaultValue: 'https://github.com/jasonsilvaa/hub-de-leitura-api.git',
+            description: 'Repositório da API Hub de Leitura'
         )
         string(
             name: 'APP_BASE_URL',
@@ -16,7 +16,7 @@ pipeline {
 
     environment {
         CI = 'true'
-        APP_DIR = 'hub-de-leitura-integrado'
+        APP_DIR = 'hub-de-leitura-api'
         CYPRESS_baseUrl = "${params.APP_BASE_URL}/api/"
         PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:${env.PATH}"
     }
@@ -58,7 +58,7 @@ pipeline {
             }
         }
 
-        stage('Subir Aplicação Hub de Leitura') {
+        stage('Subir API Hub de Leitura') {
             steps {
                 sh '''
                     . ./scripts/jenkins-setup.sh

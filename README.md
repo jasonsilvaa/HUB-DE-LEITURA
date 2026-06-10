@@ -2,7 +2,7 @@
 
 Suíte de testes automatizados para a aplicação **Hub de Leitura**, cobrindo fluxos de **UI** (cadastro, login, catálogo, contato) e **API** (CRUD de usuários).
 
-> **Nota:** Este repositório contém apenas os testes. A aplicação ([hub-de-leitura-integrado](https://github.com/jasonsilvaa/hub-de-leitura-integrado)) deve estar em execução em `http://localhost:3000` antes de rodar os testes localmente. No Jenkins, a aplicação é clonada e iniciada automaticamente pelo pipeline.
+> **Nota:** Este repositório contém apenas os testes. A API ([hub-de-leitura-api](https://github.com/jasonsilvaa/hub-de-leitura-api)) deve estar em execução em `http://localhost:3000` antes de rodar os testes localmente. No Jenkins, a API é clonada e iniciada automaticamente pelo pipeline.
 
 ## Funcionalidades testadas
 
@@ -27,15 +27,15 @@ Suíte de testes automatizados para a aplicação **Hub de Leitura**, cobrindo f
 
 - [Node.js](https://nodejs.org/) (v18 ou superior recomendado)
 - [npm](https://www.npmjs.com/)
-- Aplicação **Hub de Leitura** rodando em `http://localhost:3000` ([hub-de-leitura-integrado](https://github.com/jasonsilvaa/hub-de-leitura-integrado))
+- API **Hub de Leitura** rodando em `http://localhost:3000` ([hub-de-leitura-api](https://github.com/jasonsilvaa/hub-de-leitura-api))
 
 ## Instalação
 
-### 1. Subir a aplicação (em outro terminal)
+### 1. Subir a API (em outro terminal)
 
 ```bash
-git clone https://github.com/jasonsilvaa/hub-de-leitura-integrado.git
-cd hub-de-leitura-integrado
+git clone https://github.com/jasonsilvaa/hub-de-leitura-api.git
+cd hub-de-leitura-api
 npm install
 npm run db
 npm start
@@ -258,7 +258,7 @@ O projeto inclui um `Jenkinsfile` com pipeline declarativo para execução autom
 - **Node.js** (v18+) e **npm** disponíveis no agente (PATH)
 - **Git** disponível no agente (para clonar a aplicação)
 
-A aplicação é obtida automaticamente do repositório [hub-de-leitura-integrado](https://github.com/jasonsilvaa/hub-de-leitura-integrado) — não é necessário subir o servidor manualmente antes do build.
+A API é obtida automaticamente do repositório [hub-de-leitura-api](https://github.com/jasonsilvaa/hub-de-leitura-api) — não é necessário subir o servidor manualmente antes do build.
 
 ### Estágios do pipeline
 
@@ -266,7 +266,7 @@ A aplicação é obtida automaticamente do repositório [hub-de-leitura-integrad
 |---------|-----------|
 | Preparação do Ambiente | Exibe versões do Node/npm e variáveis do build |
 | Instalação das Dependências dos Testes | `npm ci` + `cypress verify` |
-| Subir Aplicação Hub de Leitura | Clona `hub-de-leitura-integrado`, `npm install`, `npm run db`, `npm start` |
+| Subir API Hub de Leitura | Clona `hub-de-leitura-api`, `npm install`, `npm run db`, `npm start` |
 | Análise de Código (Lint) | `npm run lint` |
 | Execução dos Testes Automatizados | `npm run ci:test` (testes de API) |
 
@@ -303,15 +303,15 @@ Se o erro persistir:
 
 | Parâmetro | Padrão | Descrição |
 |-----------|--------|-----------|
-| `APP_REPO_URL` | `https://github.com/jasonsilvaa/hub-de-leitura-integrado.git` | Repositório da aplicação |
+| `APP_REPO_URL` | `https://github.com/jasonsilvaa/hub-de-leitura-api.git` | Repositório da API |
 | `APP_BASE_URL` | `http://localhost:3000` | URL da aplicação sob teste |
 
 ### Execução local (simulando CI)
 
 ```bash
-# Terminal 1 — aplicação
-git clone https://github.com/jasonsilvaa/hub-de-leitura-integrado.git
-cd hub-de-leitura-integrado && npm install && npm run db && npm start
+# Terminal 1 — API
+git clone https://github.com/jasonsilvaa/hub-de-leitura-api.git
+cd hub-de-leitura-api && npm install && npm run db && npm start
 
 # Terminal 2 — testes
 cd HUB-DE-LEITURA

@@ -55,14 +55,19 @@ describe('Testes de API de usuários', () => {
         })
 
         it('Deve retornar erro ao criar usuário com email já existente', () => {
-            cy.criarUsuario({
+            const email = `duplicado.${Date.now()}@email.com`
+            const user = {
                 name: 'Maria Santos',
-                email: 'maria@email.com',
+                email,
                 password: 'senha123',
-            }, { failOnStatusCode: false }).then((response) => {
-                expect(response.status).to.eq(400)
-                expect(response.body).to.have.property('message')
-                expect(response.body.message).to.eq('Email já está sendo usado por outro usuário.')
+            }
+
+            cy.criarUsuario(user).then(() => {
+                cy.criarUsuario(user, { failOnStatusCode: false }).then((response) => {
+                    expect(response.status).to.eq(400)
+                    expect(response.body).to.have.property('message')
+                    expect(response.body.message).to.eq('Email já está sendo usado por outro usuário.')
+                })
             })
         })
 
@@ -158,10 +163,20 @@ describe('Testes de API de usuários', () => {
     })
     describe('DELETE - Gerenciar usuários', () => {
         it('Deve deletar usuário com sucesso', () => {
-            cy.deletarUsuario(8).then((response) => {
-                expect(response.status).to.eq(200)
-                expect(response.body).to.have.property('message')
-                expect(response.body.message).to.eq('Usuário removido com sucesso.')
+            const email = `delete.${Date.now()}@email.com`
+
+            cy.criarUsuario({
+                name: 'Usuario DELETE Test',
+                email,
+                password: 'senha123',
+            }).then((response) => {
+                const userId = response.body.user.id
+
+                cy.deletarUsuario(userId).then((deleteResponse) => {
+                    expect(deleteResponse.status).to.eq(200)
+                    expect(deleteResponse.body).to.have.property('message')
+                    expect(deleteResponse.body.message).to.eq('Usuário removido com sucesso.')
+                })
             })
         })
     })
