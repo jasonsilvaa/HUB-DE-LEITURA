@@ -5,7 +5,7 @@ module.exports = defineConfig({
   allowCypressEnv: true,
 
   e2e: {
-    baseUrl: 'http://localhost:3000/api/',
+    baseUrl: process.env.CYPRESS_baseUrl || 'http://localhost:3000/api/',
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

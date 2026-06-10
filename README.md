@@ -101,6 +101,7 @@ HUB-DE-LEITURA/
 │           └── login-pages.js
 ├── cypress.config.js
 ├── eslint.config.js
+├── Jenkinsfile                 # Pipeline de Integração Contínua
 ├── package.json
 └── README.md
 ```
@@ -231,6 +232,58 @@ Para apontar a outro ambiente:
 ```bash
 CYPRESS_baseUrl=http://localhost:8080/api/ npm run cy:run
 ```
+
+## Integração Contínua — Jenkins
+
+O projeto inclui um `Jenkinsfile` com pipeline declarativo para execução automática dos testes.
+
+### Pré-requisitos no Jenkins
+
+- [Jenkins](https://www.jenkins.io/) instalado localmente ou em servidor acessível
+- Plugin **Pipeline** habilitado
+- **Node.js** e **npm** disponíveis no agente (PATH)
+- Aplicação **Hub de Leitura** em execução (padrão: `http://localhost:3000`)
+
+### Estágios do pipeline
+
+| Estágio | Descrição |
+|---------|-----------|
+| Preparação do Ambiente | Exibe versões do Node/npm e variáveis do build |
+| Instalação das Dependências | `npm ci` + `cypress verify` |
+| Análise de Código (Lint) | `npm run lint` |
+| Verificar Disponibilidade da Aplicação | Checa `/api/health` ou `/api-docs` |
+| Execução dos Testes Automatizados | `npm run ci:test` (testes de API) |
+
+### Configurar o job no Jenkins
+
+1. Acesse Jenkins → **New Item** → **Pipeline**
+2. Em **Pipeline** → **Definition**: *Pipeline script from SCM*
+3. **SCM**: Git
+4. **Repository URL**: `https://github.com/jasonsilvaa/HUB-DE-LEITURA.git`
+5. **Script Path**: `Jenkinsfile`
+6. Salve e clique em **Build Now**
+
+### Parâmetro do pipeline
+
+| Parâmetro | Padrão | Descrição |
+|-----------|--------|-----------|
+| `APP_BASE_URL` | `http://localhost:3000` | URL da aplicação sob teste |
+
+### Execução local (simulando CI)
+
+```bash
+# Com a aplicação rodando em localhost:3000
+npm ci
+npm run lint
+npm run ci:test
+```
+
+### Webhook GitHub (opcional)
+
+Para executar o pipeline a cada push:
+
+1. Jenkins → job → **Configure** → **Build Triggers** → **GitHub hook trigger**
+2. No GitHub: repositório → **Settings** → **Webhooks** → adicione a URL do Jenkins
 
 ## Licença
 
