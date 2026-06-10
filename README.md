@@ -274,8 +274,17 @@ A aplicação é obtida automaticamente do repositório [hub-de-leitura-integrad
 2. Em **Pipeline** → **Definition**: *Pipeline script from SCM*
 3. **SCM**: Git
 4. **Repository URL**: `https://github.com/jasonsilvaa/HUB-DE-LEITURA.git`
-5. **Script Path**: `Jenkinsfile`
-6. Salve e clique em **Build Now**
+5. **Branches to build** → **Branch Specifier**: `*/main` (não use `master`)
+6. **Script Path**: `Jenkinsfile`
+7. Salve e clique em **Build Now**
+
+### Erro: `couldn't find remote ref refs/heads/master`
+
+O repositório usa a branch **`main`**, não `master`. No job do Jenkins:
+
+1. **Configure** → seção **Pipeline** → **Branches to build**
+2. Altere de `*/master` para **`*/main`**
+3. Salve e execute **Build Now** novamente
 
 ### Parâmetros do pipeline
 
